@@ -10,6 +10,7 @@ const waterStains = new Set(['coffee','tea','red-wine','blood']);
 const solids = new Set(['chocolate','tomato','grease','makeup']);
 const SAFE_CODES = new Set(['unknown','w','ws','s','x']);
 const SAFE_CARE = new Set(['unsure','washable','dry-clean']);
+const SAFE_TRIED = new Set(['nothing','water','product','unsure']);
 
 export function firstMoveFor(stain, age) {
  if (stain.id === 'mud') return age.id==='fresh' ? 'Let ordinary mud dry, then lift it without grinding in the grit.' : 'Brush off loose dry mud gently, keeping grit off the fabric.';
@@ -30,7 +31,8 @@ function finishFor(surface) {
  'sofa':'The W / W-S / S / X furniture code controls which cleaners are permitted.',
  'carpet':'This route is ONLY for manufacturer-approved synthetic, colourfast carpet.',
  'leather':'This route assumes finished leather, not suede, nubuck or unfinished hides.',
- 'wood':'Identify the finish; excess moisture and acids can damage sealed wood.'})[surface.id];
+ 'wood':'Identify the finish; excess moisture and acids can damage sealed wood.',
+ 'unknown-material':'Without knowing the material, no cleaner can be recommended safely.'})[surface.id];
 }
 function washable(stain,surface,age,{dairy,heat}) {
  const steps=[];
@@ -108,14 +110,16 @@ function carpet(stain,age){
  return [...s,step('Stop if it spreads or changes','Stop for dye movement, rings, sticky residue or persistent marks. Consult an IICRC-qualified cleaner.')];
 }
 function leather(stain,age){return [step('Absorb without rubbing',firstMoveFor(stain,age)),step('Avoid household stain chemistry','Use a clean, soft dry cloth. Alcohol, bleach, vinegar, abrasives and heavy wetting can harm the finish.'),step('Use leather-maker care only','Only use a finish-compatible method specified by the manufacturer, and test in a hidden place. For ink, dye transfer or persistent marks, seek a leather specialist.')];}
+function unknownMaterial(stain,age){return [step('Blot or lift only',firstMoveFor(stain,age)),step('Identify the material first','Look for a care label, furniture code tag or the maker’s instructions. Do not apply water, detergent or any cleaner until you know what the item is made of.'),step('Still unsure? Ask a professional','Show a professional cleaner the item, the label (if any) and tell them what spilled and when. Then come back and choose the material for a specific plan.')];}
 function wood(stain,age){return [step('Remove liquid immediately',firstMoveFor(stain,age)),step('Dry seams and edges','Use a clean dry soft cloth. A slightly damp cloth is only acceptable if your finish manufacturer permits it. Never leave standing water.'),step('Protect the finish','Avoid steam, strong acids, alcohol, bleach and abrasives without finish-specific authorization. Stop for whitening, softening or swelling and contact a wood-care professional.')];}
 
-export function buildPlan({stainId,surfaceId,ageId,upholsteryCode='unknown',care='unsure',dairy=false,heat=false}={}) {
+export function buildPlan({stainId,surfaceId,ageId,upholsteryCode='unknown',care='unsure',dairy=false,heat=false,tried='nothing'}={}) {
  const stain=getStain(stainId),surface=getSurface(surfaceId),age=getAge(ageId);
  if(!stain||!surface||!age)return null;
  const code=SAFE_CODES.has(upholsteryCode)?upholsteryCode:'unknown';
  const washCare=SAFE_CARE.has(care)?care:'unsure';
  const opts={dairy:!!dairy,heat:!!heat};
+ const triedSafe=SAFE_TRIED.has(tried)?tried:'unsure';
  const kind=surface.kind;
  const dryClean=(kind==='washable'||kind==='wool'||kind==='silk')&&washCare==='dry-clean';
  const notWashable=(kind==='washable'||kind==='wool')&&washCare==='dry-clean';
@@ -147,6 +151,9 @@ export function buildPlan({stainId,surfaceId,ageId,upholsteryCode='unknown',care
  }else if(kind==='leather'){
    steps=leather(stain,age);status='pro';statusLabel='LEATHER FINISH SENSITIVE';summary='Leather finishes vary. Gentle blotting and manufacturer-approved care are safer than general stain remedies.';
    stop='Stop for darkening, dye transfer, finish loss, or any mark remaining after initial blotting.';sourceIds=['upholstery'];
+ }else if(kind==='unknown'){
+   steps=unknownMaterial(stain,age);status='pro';statusLabel='IDENTIFY MATERIAL FIRST';summary='We do not guess a cleaning method for an unknown material. Blot only, then identify the item.';
+   stop='Stop after blotting until you know the material or have a professional’s advice.';sourceIds=['ginetex','upholstery'];
  }else{
    steps=wood(stain,age);status='pro';statusLabel='PROTECT THE WOOD FINISH';summary='Prompt removal and drying protects finished wood; no universal wood stain-removal chemical applies.';
    stop='Stop if the finish softens, clouds, whitens, lifts or swells.';sourceIds=['wood'];
@@ -157,6 +164,10 @@ export function buildPlan({stainId,surfaceId,ageId,upholsteryCode='unknown',care
  }
  if(opts.heat && !dryClean && (kind==='washable'||kind==='wool'||kind==='silk')){
    steps.unshift(step('Heat-exposed stain: inspect before treating','This mark has already been washed hot, tumble-dried or ironed. It may be more difficult to remove. Do not apply more heat; check for damage and continue only with care-label-approved steps.'));
+ }
+ if(triedSafe==='product'||triedSafe==='unsure'){
+   steps.unshift(step('A product may already be on the stain','Do not add a second cleaner on top of one already used—even “gentle” products can react or set the stain. If the first product’s label says to rinse, rinse with plain water as it directs, let the area dry, and check for damage before doing anything else.'));
+   if(status==='go')status='caution';
  }
  const dont=[kind==='washable'?'Do not iron or tumble-dry while the mark remains.':'Do not rub, scrub or abrade the spot.',
  kind==='silk'||kind==='wool'?'Do not use ordinary enzyme stain removers, bleach or hot water on delicate fibres without maker approval.':'Never mix bleach with another cleaner, including acids or ammonia.',
@@ -173,7 +184,7 @@ export function buildPlan({stainId,surfaceId,ageId,upholsteryCode='unknown',care
  const followup=status==='pro'||dryClean?'Do not escalate with household chemicals. Contact a professional cleaner familiar with this material.'
  :kind==='washable'?'If a faint mark remains after the first labelled cycle, check for colour damage, then consider one more product-label-approved pretreatment. Keep it away from heat. Stop if there is no improvement.'
  :'If the first gentle method leaves a mark, do not scrub or change chemicals. Check the manufacturer guide or ask a specialist.';
- return {stain,surface,age,code,care:washCare,dairy:opts.dairy,heat:opts.heat,
+ return {stain,surface,age,code,care:washCare,tried:triedSafe,dairy:opts.dairy,heat:opts.heat,
   status,statusLabel,summary,steps,firstMove:firstMoveFor(stain,age),dont,supplies,stop,
   warning:finishFor(surface),note:stain.note,science,followup,
   sources:sourceSet.map(id=>({...SOURCES[id],id})),sourceIds:sourceSet,

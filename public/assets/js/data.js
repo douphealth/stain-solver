@@ -76,7 +76,8 @@ export const SURFACES = [
   { id: 'sofa', name: 'Fabric sofa', subtitle: 'Check W / S / W-S / X code', kind: 'upholstery', tag: 'CHECK CODE', short: 'SF' },
   { id: 'carpet', name: 'Synthetic carpet', subtitle: 'Not wool or silk rugs', kind: 'carpet', tag: 'SPOT TEST', short: 'CP' },
   { id: 'leather', name: 'Finished leather', subtitle: 'Sofas, bags, shoes', kind: 'leather', tag: 'FINISH FIRST', short: 'LE' },
-  { id: 'wood', name: 'Finished wood', subtitle: 'Tables, floors, shelves', kind: 'wood', tag: 'KEEP DRY', short: 'WD' }
+  { id: 'wood', name: 'Finished wood', subtitle: 'Tables, floors, shelves', kind: 'wood', tag: 'KEEP DRY', short: 'WD' },
+  { id: 'unknown-material', name: 'Not sure', subtitle: 'Unknown or mixed material', kind: 'unknown', tag: 'CAUTIOUS', short: '??' }
 ];
 
 export const AGES = [

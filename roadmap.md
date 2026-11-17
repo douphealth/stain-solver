@@ -1,0 +1,12 @@
+# StainSolver roadmap (from product review)
+- [x] 1. Safety: conditional safety step (care label, sofa code, prior treatment, heat) before plans
+- [x] 1. "Not sure" material → blot-only, identify-first plan
+- [x] 1. Privacy promises verified (no analytics/network calls besides own site)
+- [x] 1. Homepage stain/material counts generated from data
+- [x] 2. Edit answers from results; answers kept in share link; print hides controls
+- [x] 4. Routing: / keeps #anchors in preview
+- [x] 5. Automated safety-rule tests (here + GitHub `npm test`)
+- [ ] 3. Editorial transparency: named publisher, contact, corrections, reviewer names — needs real details from owner
+- [ ] 3. Per-guide review dates — needs real review records from owner
+- [ ] 4. Homepage design simplification (solver-first, one main button) — next round
+- [ ] 6. SEO polish of guide pages — next round

@@ -1,5 +1,5 @@
 // Stain Solver offline support: network-first pages, cached assets; no analytics.
-const VERSION='stainsolver-v3-2026-11-01';
+const VERSION='stainsolver-v3-2026-11-17';
 const CORE=['/','/solve/','/guides/','/about/','/privacy/','/assets/css/style.css','/assets/css/experience.css','/assets/img/textile-study.svg','/assets/img/share-card.png','/assets/js/app.js','/assets/js/data.js','/assets/js/engine.js','/assets/img/favicon.svg','/manifest.webmanifest'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(VERSION).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith('stainsolver-')&&k!==VERSION).map(k=>caches.delete(k)));await self.clients.claim();})());});
