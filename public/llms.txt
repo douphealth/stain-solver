@@ -1,0 +1,50 @@
+# Stain Solver
+
+> Spilled coffee, wine or grease? Get a stain-removal first move tailored to your fabric. Three quick choices, practical steps, and source-backed safety guidance.
+
+Stain Solver is a free, account-free household guide. It turns published cleaning and textile-care sources into cautious, fabric-specific first steps. It does not claim laboratory testing, guaranteed removal, or a live inspection of a garment. The care label and the maker's directions come first.
+
+## Pages
+
+- [Home](https://stainsolver.shop/): Spilled coffee, wine or grease? Get a stain-removal first move tailored to your fabric. Three quick choices, practical steps, and source-backed safety guidance.
+- [Stain guides](https://stainsolver.shop/guides/): Care-aware guides for common spills on cotton, denim, sofas, carpet, wool, silk and more. Browse by stain and material.
+- [How our advice works](https://stainsolver.shop/about/): How Stain Solver turns public cleaning and textile-care resources into conservative fabric-aware first steps, with safety rules and references.
+- [Privacy](https://stainsolver.shop/privacy/): Stain Solver is free and accountless. Your saved stain plans live in your browser; there are no analytics trackers or external user accounts.
+- [Interactive stain desk](https://stainsolver.shop/solve/): Choose the spill, the material, and whether the stain is fresh or dried. Get practical first steps with warnings and sources. Plans are built in the browser. This address is a utility page and is not intended for indexing.
+
+## Guides
+
+- [Coffee on white cotton](https://stainsolver.shop/guides/coffee-on-white-cotton/): Coffee on white cotton: White cotton is usually launderable, but the care symbol still controls wash temperature and which products may be used.
+- [Coffee on coloured cotton](https://stainsolver.shop/guides/coffee-on-coloured-cotton/): Coffee on coloured cotton: Coloured cotton needs a dye-transfer check.
+- [Coffee on fabric sofa](https://stainsolver.shop/guides/coffee-on-sofa/): Coffee on fabric sofa: Fabric upholstery must be treated according to its cleaning code. A missing code is a reason to pause, not a reason to guess with water.
+- [Coffee on wool](https://stainsolver.shop/guides/coffee-on-wool/): Coffee on wool: Wool can be damaged by inappropriate detergents or rough handling.
+- [Coffee on silk](https://stainsolver.shop/guides/coffee-on-silk/): Coffee on silk: Silk is vulnerable to water marks, colour migration and finish damage.
+- [Red wine on white cotton](https://stainsolver.shop/guides/red-wine-on-white-cotton/): Red wine on white cotton: White cotton is usually launderable, but the care symbol still controls wash temperature and which products may be used.
+- [Red wine on coloured cotton](https://stainsolver.shop/guides/red-wine-on-coloured-cotton/): Red wine on coloured cotton: Coloured cotton needs a dye-transfer check.
+- [Red wine on synthetic carpet](https://stainsolver.shop/guides/red-wine-on-carpet/): Red wine on synthetic carpet: This guidance covers synthetic, colourfast carpets rather than wool, silk or antique rugs.
+- [Red wine on fabric sofa](https://stainsolver.shop/guides/red-wine-on-sofa/): Red wine on fabric sofa: Fabric upholstery must be treated according to its cleaning code.
+- [Grease & oil on coloured cotton](https://stainsolver.shop/guides/grease-on-coloured-cotton/): Grease & oil on coloured cotton: Coloured cotton needs a dye-transfer check.
+- [Grease & oil on white cotton](https://stainsolver.shop/guides/grease-on-white-cotton/): Grease & oil on white cotton: White cotton is usually launderable, but the care symbol still controls wash temperature and which products may be used.
+- [Grease & oil on denim](https://stainsolver.shop/guides/grease-on-denim/): Grease & oil on denim: Indigo-dyed denim can lose colour under forceful treatment. A gentle first move is more sensible than vigorous scrubbing.
+- [Grease & oil on fabric sofa](https://stainsolver.shop/guides/grease-on-sofa/): Grease & oil on fabric sofa: Fabric upholstery must be treated according to its cleaning code.
+- [Blood on white cotton](https://stainsolver.shop/guides/blood-on-white-cotton/): Blood on white cotton: White cotton is usually launderable, but the care symbol still controls wash temperature and which products may be used.
+- [Blood on coloured cotton](https://stainsolver.shop/guides/blood-on-coloured-cotton/): Blood on coloured cotton: Coloured cotton needs a dye-transfer check.
+- [Blood on synthetic carpet](https://stainsolver.shop/guides/blood-on-carpet/): Blood on synthetic carpet: This guidance covers synthetic, colourfast carpets rather than wool, silk or antique rugs.
+- [Chocolate on white cotton](https://stainsolver.shop/guides/chocolate-on-white-cotton/): Chocolate on white cotton: White cotton is usually launderable, but the care symbol still controls wash temperature and which products may be used.
+- [Chocolate on fabric sofa](https://stainsolver.shop/guides/chocolate-on-sofa/): Chocolate on fabric sofa: Fabric upholstery must be treated according to its cleaning code.
+- [Chocolate on synthetic carpet](https://stainsolver.shop/guides/chocolate-on-carpet/): Chocolate on synthetic carpet: This guidance covers synthetic, colourfast carpets rather than wool, silk or antique rugs.
+- [Ink on white cotton](https://stainsolver.shop/guides/ink-on-white-cotton/): Ink on white cotton: White cotton is usually launderable, but the care symbol still controls wash temperature and which products may be used.
+- [Ink on denim](https://stainsolver.shop/guides/ink-on-denim/): Ink on denim: Indigo-dyed denim can lose colour under forceful treatment. A gentle first move is more sensible than vigorous scrubbing.
+- [Ink on fabric sofa](https://stainsolver.shop/guides/ink-on-sofa/): Ink on fabric sofa: Fabric upholstery must be treated according to its cleaning code. A missing code is a reason to pause, not a reason to guess with water.
+- [Grass on denim](https://stainsolver.shop/guides/grass-on-denim/): Grass on denim: Indigo-dyed denim can lose colour under forceful treatment. A gentle first move is more sensible than vigorous scrubbing.
+- [Grass on coloured cotton](https://stainsolver.shop/guides/grass-on-coloured-cotton/): Grass on coloured cotton: Coloured cotton needs a dye-transfer check.
+- [Tomato sauce on white cotton](https://stainsolver.shop/guides/tomato-on-white-cotton/): Tomato sauce on white cotton: White cotton is usually launderable, but the care symbol still controls wash temperature and which products may be used.
+- [Tomato sauce on synthetic carpet](https://stainsolver.shop/guides/tomato-on-carpet/): Tomato sauce on synthetic carpet: This guidance covers synthetic, colourfast carpets rather than wool, silk or antique rugs.
+- [Makeup on coloured cotton](https://stainsolver.shop/guides/makeup-on-coloured-cotton/): Makeup on coloured cotton: Coloured cotton needs a dye-transfer check.
+- [Makeup on silk](https://stainsolver.shop/guides/makeup-on-silk/): Makeup on silk: Silk is vulnerable to water marks, colour migration and finish damage.
+- [Mud on denim](https://stainsolver.shop/guides/mud-on-denim/): Mud on denim: Indigo-dyed denim can lose colour under forceful treatment. A gentle first move is more sensible than vigorous scrubbing.
+- [Mud on synthetic carpet](https://stainsolver.shop/guides/mud-on-carpet/): Mud on synthetic carpet: This guidance covers synthetic, colourfast carpets rather than wool, silk or antique rugs.
+- [Tea on white cotton](https://stainsolver.shop/guides/tea-on-white-cotton/): Tea on white cotton: White cotton is usually launderable, but the care symbol still controls wash temperature and which products may be used.
+- [Tea on wool](https://stainsolver.shop/guides/tea-on-wool/): Tea on wool: Wool can be damaged by inappropriate detergents or rough handling.
+- [Sweat marks on white cotton](https://stainsolver.shop/guides/sweat-on-white-cotton/): Sweat marks on white cotton: White cotton is usually launderable, but the care symbol still controls wash temperature and which products may be used.
+- [Sweat marks on coloured cotton](https://stainsolver.shop/guides/sweat-on-coloured-cotton/): Sweat marks on coloured cotton: Coloured cotton needs a dye-transfer check.

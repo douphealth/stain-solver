@@ -1,26 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
 
-// The StainSolver site is static HTML in public/. Redirect in the browser so
-// anchors like /#solver survive (a server redirect would drop the #hash).
+import { SITE_URL } from "@/lib/site-url";
+
+// `/` is the static homepage in public/index.html. src/server.ts serves that
+// document so the response is crawlable HTML, including hash links such as
+// /#solver. This route only keeps `/` matched if the static file is not used.
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "StainSolver — Stain removal guides" },
-      { name: "description", content: "Find the safest way to remove any stain from any fabric." },
-      { property: "og:title", content: "StainSolver — Stain removal guides" },
-      { property: "og:description", content: "Find the safest way to remove any stain from any fabric." },
+      { title: "Stain Solver — Spilled something? Start here." },
+      {
+        name: "description",
+        content:
+          "Spilled coffee, wine or grease? Get a stain-removal first move tailored to your fabric. Three quick choices, practical steps, and source-backed safety guidance.",
+      },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { property: "og:title", content: "Stain Solver — Spilled something? Start here." },
+      {
+        property: "og:description",
+        content:
+          "Spilled coffee, wine or grease? Get a stain-removal first move tailored to your fabric. Three quick choices, practical steps, and source-backed safety guidance.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/` },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "robots", content: "noindex" },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
   }),
-  component: Redirect,
+  component: () => null,
 });
-
-function Redirect() {
-  useEffect(() => {
-    window.location.replace("/home.html" + window.location.search + window.location.hash);
-  }, []);
-  return null;
-}
