@@ -226,3 +226,6 @@ body.v3 .simple-page .solver-root{max-width:1160px;margin:auto}
 .safety-form{padding:4px 0 8px;display:grid;gap:22px}.show-plan{background:#13263a;color:#f6f8ee;border:0;border-radius:6px;padding:12px 18px;font-weight:800;font-size:13px;cursor:pointer}.show-plan:focus-visible,.pill-select button:focus-visible{outline:3px solid #e26a55;outline-offset:2px}
 @media print{.result-action-row,.context-panel,.outcome-panel,.saved-plans,.site-header,header,footer{display:none!important}}
 .stage-steps{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+body.v3 nav.back-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;border-bottom:0;margin:0 0 22px;font-size:12px;font-weight:800;letter-spacing:.04em}
+body.v3 nav.back-breadcrumb a{border-bottom:1px solid #7a8c78;padding-bottom:2px}
+body.v3 nav.back-breadcrumb [aria-current="page"]{color:#56646a;font-weight:750}

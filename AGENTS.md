@@ -29,5 +29,5 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 
-- StainSolver is static HTML/JS in `public/` (mirrors `public/` in GitHub repo douphealth/stainsolver; home page is `public/home.html` here, `public/index.html` there). Why: the TanStack app only redirects to it in the preview.
+- StainSolver is static HTML/JS in `public/` (mirrors `public/` in GitHub repo douphealth/stainsolver). `/` is `public/index.html`, kept identical to `public/home.html`; `/home` redirects to `/`. Why: the TanStack app must not replace the homepage with an empty shell.
 - Treatment logic lives in `public/assets/js/engine.js`; every safety rule needs a test in `src/test/stain-engine.test.ts` (and the repo's `tests/engine.test.mjs`). Why: rules must stay deterministic and conservative.

@@ -9,4 +9,4 @@
 - [ ] 3. Editorial transparency: named publisher, contact, corrections, reviewer names — needs real details from owner
 - [ ] 3. Per-guide review dates — needs real review records from owner
 - [ ] 4. Homepage design simplification (solver-first, one main button) — next round
-- [ ] 6. SEO polish of guide pages — next round
+- [x] 6. SEO polish of guide pages — canonicals, sitemap, structured data

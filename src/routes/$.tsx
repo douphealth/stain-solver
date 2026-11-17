@@ -1,13 +1,16 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 
-// StainSolver pages are static folders in public/ (e.g. /about/index.html).
-// Send folder-style links to the matching static page.
+// Content URLs are static files in public/ and are served before this route.
+// A request that reaches here is not a page, so it is a real 404.
 export const Route = createFileRoute("/$")({
-  beforeLoad: ({ params }) => {
-    const path = (params._splat ?? "").replace(/\/+$/, "");
-    if (path && !path.includes(".")) {
-      throw redirect({ href: `/${path}/index.html`, reloadDocument: true });
-    }
+  beforeLoad: () => {
+    throw notFound();
   },
+  head: () => ({
+    meta: [
+      { title: "Page not found | Stain Solver" },
+      { name: "robots", content: "noindex, follow" },
+    ],
+  }),
   component: () => null,
 });
