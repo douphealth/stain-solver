@@ -1,0 +1,7 @@
+# The pages.dev alias serves the same static files as stainsolver.shop.
+# Static files are served before the Worker, so they cannot be redirected; keep the alias out of search indexes.
+https://stain-solver.pages.dev/*
+  X-Robots-Tag: noindex, follow
+
+https://:hash.stain-solver.pages.dev/*
+  X-Robots-Tag: noindex, follow
