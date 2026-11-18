@@ -1,3 +1,4 @@
+import { normalizePlan } from './plan-state.js';
 import { STAINS, SURFACES, AGES, getStain, getSurface, getAge, SOURCES } from './data.js';
 import { buildPlan, checkCleanerCombination } from './engine.js';
 
@@ -8,11 +9,11 @@ const state={step:0,stain:null,surface:null,age:null,code:'unknown',care:'unsure
 let tickHandle,toastHandle;
 function readJSON(key,other){try{const x=JSON.parse(localStorage.getItem(key));return x??other;}catch{return other;}}
 function setJSON(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true;}catch{notify('Local storage unavailable in this browser.');return false;}}
-function readSaved(){const saved=readJSON(STORE,null)??readJSON(OLD_STORE,[]);return Array.isArray(saved)?saved.filter(v=>buildPlan({stainId:v.stain,surfaceId:v.surface,ageId:v.age})).slice(0,16):[];}
+function readSaved(){const saved=readJSON(STORE,null)??readJSON(OLD_STORE,[]);return Array.isArray(saved)?saved.filter(v=>v && buildPlan({stainId:v.stain,surfaceId:v.surface,ageId:v.age})).map(normalizePlan).slice(0,16):[];}
 function notify(message){const x=$('#toast');if(!x)return;x.textContent=message;x.classList.add('show');clearTimeout(toastHandle);toastHandle=setTimeout(()=>x.classList.remove('show'),3100);}
 function options(){return {stainId:state.stain,surfaceId:state.surface,ageId:state.age,upholsteryCode:state.code,care:state.care,dairy:state.dairy,heat:state.heat,tried:state.tried};}
 function plan(){return buildPlan(options());}
-function planPayload(){return {stain:state.stain,surface:state.surface,age:state.age,code:state.code,care:state.care,dairy:state.dairy,heat:state.heat};}
+function planPayload(){return normalizePlan(state);}
 function query(){const q=new URLSearchParams();for(const [key,v] of Object.entries(planPayload())){if(v===null||v===undefined)continue;if(key==='code'&&v==='unknown')continue;if(key==='care'&&v==='unsure')continue;if(key==='tried'&&v==='nothing')continue;if((key==='dairy'||key==='heat')&&!v)continue;q.set(key,String(v));}return q;}
 function link(){return `${location.origin}/solve/?${query()}`;}
 function updateAddress(){if(!state.result)return;const url=new URL(location.href);url.search=query();if(document.body.dataset.page==='home')url.hash='solver';try{history.replaceState({},'',url.pathname+url.search+url.hash);}catch{}}
@@ -66,7 +67,7 @@ function loadPlan(v){if(!buildPlan({stainId:v.stain,surfaceId:v.surface,ageId:v.
 function changeContext(k,v){if(k==='care')state.care=v;if(k==='code')state.code=v;if(k==='dairy')state.dairy=v;if(k==='heat')state.heat=v;if(k==='tried')state.tried=v;if(!state.result){render();return;}resetProgress();updateAddress();render();notify('Plan updated for your new detail.');}
 function clearAll(){if(setJSON(STORE,[])){try{localStorage.removeItem(OLD_STORE);}catch{}render();notify('Saved plans cleared.');}}
 function reset(){state.result=false;state.step=0;state.stain=null;state.surface=null;state.age=null;state.code='unknown';state.care='unsure';state.dairy=false;state.heat=false;state.tried='nothing';state.search='';resetProgress();resetAddress();render();focusTool();}
-function save(){const v=planPayload(),items=readSaved(),key=JSON.stringify(v),already=items.some(e=>JSON.stringify({...e,code:e.code??'unknown',care:e.care??'unsure',dairy:!!e.dairy,heat:!!e.heat})===key),next=already?items.filter(x=>JSON.stringify(x)!==key):[v,...items].slice(0,16);if(setJSON(STORE,next)){render();notify(already?'Removed from saved plans.':'Saved locally on this device.');}}
+function save(){const v=planPayload(),items=readSaved(),key=JSON.stringify(v),already=items.some(e=>JSON.stringify(e)===key),next=already?items.filter(x=>JSON.stringify(x)!==key):[v,...items].slice(0,16);if(setJSON(STORE,next)){render();notify(already?'Removed from saved plans.':'Saved locally on this device.');}}
 function cancelTimer(){clearInterval(tickHandle);tickHandle=null;state.timer=null;}
 function refreshTimer(){const clock=$('#timer-clock'),box=$('#timer-box');if(!state.timer)return;if(box&&box.hidden)box.hidden=false;if(!clock)return;const remaining=state.timer.until-Date.now();clock.textContent=formatTime(remaining);if(remaining<=0){cancelTimer();const label=$('#timer-note');if(label)label.textContent='Time is up. Follow the product label before continuing.';clock.textContent='00:00';notify('Timer finished — check the step and label.');}}
 function startTimer(stepIndex,minutes){const p=plan(),s=p?.steps[stepIndex];if(!s||!s.minutes||minutes!==s.minutes)return;cancelTimer();state.timer={step:stepIndex,title:s.title,until:Date.now()+minutes*60_000};const box=$('#timer-box');if(box){box.hidden=false;box.innerHTML=timerHTML();box.scrollIntoView({block:'nearest',behavior:'smooth'});}tickHandle=setInterval(refreshTimer,250);}
@@ -91,7 +92,6 @@ if(a==='png'){downloadCard(current);return;}if(a==='print'){window.print();retur
  root.addEventListener('input',e=>{if(e.target.id==='stain-search'){state.search=e.target.value;const grid=$('#stain-options');if(grid)grid.innerHTML=stainOptions();}});
 }
 const showcase=$('#stain-showcase');if(showcase){const ids=['coffee','red-wine','grease','blood','ink','chocolate','tomato','grass'];showcase.innerHTML=ids.map(id=>{const s=getStain(id);return `<button type="button" data-quick-stain="${s.id}" class="showcase-card" style="--spot:${s.tint}"><span class="showcase-top">${clean(s.category.toUpperCase())} <span>↗</span></span><span class="showcase-mark" aria-hidden="true"></span><span class="showcase-bottom"><strong>${clean(s.name)}</strong><span class="showcase-arrow">↗</span></span></button>`;}).join('');showcase.addEventListener('click',e=>{const b=e.target.closest('[data-quick-stain]');if(!b||!root)return;choose(b.dataset.quickStain,'stain');root.scrollIntoView({behavior:'smooth',block:'start'});});}
-const guideFilter=$('#guide-filter');if(guideFilter)guideFilter.addEventListener('input',()=>{const q=guideFilter.value.trim().toLowerCase();let n=0;$$('.directory-card').forEach(el=>{const visible=el.dataset.filter.includes(q);el.hidden=!visible;if(visible)n++;});const cnt=$('#guide-count');if(cnt)cnt.textContent=`${n} guides`;const empty=$('#guide-empty');if(empty)empty.hidden=!!n;});
 const checker=$('#danger-checker');if(checker){const a=$('#cleaner-a'),b=$('#cleaner-b'),result=$('#danger-result');const run=()=>{const v=checkCleanerCombination(a.value,b.value);if(!v)return;result.className=`danger-answer ${v.risk}`;result.innerHTML=`<strong>${clean(v.title)}</strong><p>${clean(v.message)}</p><a href="${SOURCES.poison.url}" target="_blank" rel="noopener noreferrer">Source: Poison Control ↗</a>`;};a.addEventListener('change',run);b.addEventListener('change',run);run();}
 $$('[data-count="stains"]').forEach(el=>el.textContent=STAINS.length);$$('[data-count="materials"]').forEach(el=>el.textContent=SURFACES.filter(s=>s.kind!=='unknown').length);
 $$('[data-current-year]').forEach(el=>el.textContent=new Date().getFullYear());
