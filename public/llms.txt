@@ -6,7 +6,7 @@ Guidance is conservative: always spot-test hidden areas first and follow the gar
 
 ## Start here
 
-- [Stain Solver — Spilled something? Start here.](https://stainsolver.shop/): Spilled coffee, wine or grease? Get a stain-removal first move tailored to your fabric. Three quick choices, practical steps, and source-backed safety guidance.
+- [Stain Solver | Stain removal by fabric and spill](https://stainsolver.shop/): Spilled coffee, wine or grease? Get a stain-removal first move tailored to your fabric. Three quick choices, practical steps, and source-backed safety guidance.
 - [Our method and sources | Stain Solver](https://stainsolver.shop/about/): How Stain Solver turns public cleaning and textile-care resources into conservative fabric-aware first steps, with safety rules and references.
 - [Stain removal guides | Stain Solver](https://stainsolver.shop/guides/): Care-aware guides for common spills on cotton, denim, sofas, carpet, wool, silk and more. Browse by stain and material.
 - [Privacy and offline use | Stain Solver](https://stainsolver.shop/privacy/): Stain Solver is free and accountless. Your saved stain plans live in your browser; there are no analytics trackers or external user accounts.
