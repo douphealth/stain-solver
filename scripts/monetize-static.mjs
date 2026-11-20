@@ -25,6 +25,12 @@ const SUPPLY = [
   [/non-acetone/i, "Non-acetone nail polish remover", "non acetone nail polish remover", "Gentler on carpet fibres than acetone; still test first."],
   [/oxygen bleach/i, "Oxygen bleach powder", "oxygen bleach powder laundry", "Only where the garment's bleach symbol allows it."],
   [/carpet spot cleaner/i, "Carpet spot cleaner", "carpet spot stain remover", "Pick one suited to your carpet fibre, and test first."],
+  [/white vinegar/i, "Distilled white vinegar", "distilled white vinegar cleaning", "Test it on a hidden seam first, as the guide says."],
+  [/soft brush/i, "Soft-bristle cleaning brush", "soft bristle laundry stain brush", "Works stains loose without roughing up the fabric."],
+  [/pet urine enzyme cleaner/i, "Pet urine enzyme cleaner", "pet urine enzyme cleaner carpet", "Breaks down odour so pets are less likely to return to the spot."],
+  [/fabric rust remover/i, "Fabric-safe rust remover", "fabric rust stain remover", "Choose one labelled safe for fabric; wear gloves and rinse well."],
+  [/baking soda/i, "Baking soda", "baking soda", "Absorbs moisture and odour before you vacuum it up."],
+  [/disposable gloves/i, "Disposable gloves", "disposable nitrile gloves", "Protect your hands when cleaning up after illness."],
   [/mattress protector/i, "Waterproof mattress protector", "waterproof mattress protector", "Prevents the next stain from reaching the mattress."],
 ];
 const url = (q) => `https://${DOMAIN}/s?k=${encodeURIComponent(q)}&tag=${encodeURIComponent(TAG)}`;
