@@ -31,6 +31,9 @@ const SUPPLY = [
   [/fabric rust remover/i, "Fabric-safe rust remover", "fabric rust stain remover", "Choose one labelled safe for fabric; wear gloves and rinse well."],
   [/baking soda/i, "Baking soda", "baking soda", "Absorbs moisture and odour before you vacuum it up."],
   [/disposable gloves/i, "Disposable gloves", "disposable nitrile gloves", "Protect your hands when cleaning up after illness."],
+  [/^urine enzyme cleaner/i, "Urine enzyme cleaner", "urine enzyme cleaner mattress", "Breaks down the compounds that cause urine odour."],
+  [/acetone nail polish remover/i, "Acetone nail polish remover", "acetone nail polish remover", "Dissolves cured glue. Never on acetate or modacrylic; test first."],
+  [/paper towels/i, "Paper towels", "paper towels", "For blotting and for lifting wax with a low iron."],
   [/mattress protector/i, "Waterproof mattress protector", "waterproof mattress protector", "Prevents the next stain from reaching the mattress."],
 ];
 const url = (q) => `https://${DOMAIN}/s?k=${encodeURIComponent(q)}&tag=${encodeURIComponent(TAG)}`;
