@@ -17,6 +17,15 @@ const SUPPLY = [
   [/dish liquid/i, "Clear, dye-free dish liquid", "clear dye free dish soap", "Only use it where the maker approves, as the guide says."],
   [/lint-free cloth/i, "Lint-free cloths", "lint free cleaning cloths", "Blot without leaving fibres on the surface."],
   [/wool detergent/i, "Wool wash detergent", "wool wash detergent", "Only if the item is washable, as the guide says."],
+  [/enzyme laundry pre-treatment/i, "Enzyme laundry pre-treatment", "enzyme laundry stain pretreatment", "For protein stains such as blood. Not for wool or silk."],
+  [/enzyme stain remover/i, "Enzyme stain remover for upholstery", "enzyme stain remover upholstery mattress", "Use sparingly and follow its dwell time, as the guide says."],
+  [/hydrogen peroxide/i, "3% hydrogen peroxide", "hydrogen peroxide 3 percent", "White fabrics only, and only after a hidden test."],
+  [/isopropyl alcohol/i, "Isopropyl (rubbing) alcohol", "isopropyl alcohol 70 percent", "Test on a hidden seam first; not for acetate fabrics."],
+  [/ice pack/i, "Reusable ice packs", "reusable ice packs", "Hardens gum or wax so it lifts off in pieces."],
+  [/non-acetone/i, "Non-acetone nail polish remover", "non acetone nail polish remover", "Gentler on carpet fibres than acetone; still test first."],
+  [/oxygen bleach/i, "Oxygen bleach powder", "oxygen bleach powder laundry", "Only where the garment's bleach symbol allows it."],
+  [/carpet spot cleaner/i, "Carpet spot cleaner", "carpet spot stain remover", "Pick one suited to your carpet fibre, and test first."],
+  [/mattress protector/i, "Waterproof mattress protector", "waterproof mattress protector", "Prevents the next stain from reaching the mattress."],
 ];
 const url = (q) => `https://${DOMAIN}/s?k=${encodeURIComponent(q)}&tag=${encodeURIComponent(TAG)}`;
 
