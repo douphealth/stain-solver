@@ -36,6 +36,13 @@ const SUPPLY = [
   [/paper towels/i, "Paper towels", "paper towels", "For blotting and for lifting wax with a low iron."],
   [/mattress protector/i, "Waterproof mattress protector", "waterproof mattress protector", "Prevents the next stain from reaching the mattress."],
 ];
+// Homepage: the four supplies the guides call for most often.
+const HOME_PICKS = [
+  [null, "Enzyme laundry pre-treatment", "enzyme laundry stain pretreatment", "For protein stains such as blood, sweat and food. Not for wool or silk."],
+  [null, "Oxygen bleach powder", "oxygen bleach powder laundry", "Colour-safe bleach, only where a garment's bleach symbol allows it."],
+  [null, "Plain white cleaning cloths", "white cotton cleaning cloths", "Plain white cloths won't transfer dye while you blot."],
+  [null, "Carpet spot cleaner", "carpet spot stain remover", "Pick one suited to your carpet fibre, and test first."],
+];
 const url = (q) => `https://${DOMAIN}/s?k=${encodeURIComponent(q)}&tag=${encodeURIComponent(TAG)}`;
 
 function picksFor(html) {
@@ -63,6 +70,10 @@ for (const file of walk("public")) {
   const before = readFileSync(file, "utf8");
   let html = strip(strip(strip(before, "amazon-picks"), "adsense"), "monetize-privacy");
   if (ADS) html = html.replace("</head>", `${adsHead()}</head>`);
+  if (TAG && file.replaceAll(String.fromCharCode(92), "/").endsWith("public/home.html") && html.includes("</main>")) {
+    // Wrapper class lives inside the markers so re-runs strip it cleanly (idempotent).
+    html = html.replace("</main>", `${amazonBlock(HOME_PICKS).replace("Supplies from this guide", "A starter stain kit").replace('<section aria-label="Shopping suggestions" style="margin:2.5rem 0 0;', '<section class="wrap" aria-label="Shopping suggestions" style="margin:2.5rem auto 3rem;')}</main>`);
+  }
   if (TAG && /data-page="guide"/.test(html)) { const p = picksFor(html); if (p.length) { html = html.replace("</article>", `${amazonBlock(p)}</article>`); guides++; } }
   if (file.replaceAll(String.fromCharCode(92), "/").endsWith("public/privacy/index.html")) { const b = privacyBlock(); if (b) html = html.includes("</article>") ? html.replace("</article>", `${b}</article>`) : html.replace("</main>", `${b}</main>`); }
   if (html !== before) { writeFileSync(file, html); changed++; }
