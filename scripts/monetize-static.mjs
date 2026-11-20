@@ -34,6 +34,8 @@ const SUPPLY = [
   [/^urine enzyme cleaner/i, "Urine enzyme cleaner", "urine enzyme cleaner mattress", "Breaks down the compounds that cause urine odour."],
   [/^acetone nail polish remover/i, "Acetone nail polish remover", "acetone nail polish remover", "Dissolves cured glue. Never on acetate or modacrylic; test first."],
   [/paper towels/i, "Paper towels", "paper towels", "For blotting and for lifting wax with a low iron."],
+  [/distilled water/i, "Distilled water", "distilled water gallon", "Leaves no mineral residue, so it won't form a new ring."],
+  [/spray bottle/i, "Fine-mist spray bottle", "fine mist spray bottle", "Dampens fabric evenly without soaking it."],
   [/mattress protector/i, "Waterproof mattress protector", "waterproof mattress protector", "Prevents the next stain from reaching the mattress."],
 ];
 // Homepage: the four supplies the guides call for most often.
